@@ -1,64 +1,74 @@
 import 'package:flutter/material.dart';
+
 void main() {
-  runApp (MyApp());
+  runApp(const MyApp());
 }
 
-
-class MyApp extends StatefulWidget{
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-@override
-  State<MyApp>createState()=> _MyAppState();
-
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: LogInScreen(),
+    );
+  }
 }
-class _MyAppState extends State<MyApp>{
-@override
-  Widget build(BuildContext context ){
-    return MaterialApp(
-      home:Scaffold(
-        appBar: AppBar(title: Text("Login Page"),
-        backgroundColor: Colors.white,
-), body: Container(
-          decoration: BoxDecoration(
-            color: Colors.white, // Background color matching the image
-          ),
-          child: Column(
-          children: [
-            Image.network("https://user-images.githubusercontent.com/22778491/143621067-1abe6d0f-64fb-4a67-a54e-0946ad01fa6e.png"),
-            TextField( 
-              decoration:InputDecoration(
-                
-                hintText: "Enter your username",
-                labelText: "Username",
-                icon: Icon(Icons.person),
-              
-                 fillColor: Colors.grey[200],
-                filled: true,
-                border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(20)),)
-              ) ,
-              
-            ),
-            Container(
-                margin:  EdgeInsets.only(bottom:10),
-            ), 
-              TextField(
-              decoration:InputDecoration(
-                hintText: "At Least 8 Characters",
-                labelText: "Password",
-                icon: Icon(Icons.lock),
-                fillColor: Colors.grey[200],
-                filled: true,
-                border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(20)))
-              ) ,
-              
-            )
-          ],
+
+class LogInScreen extends StatelessWidget {
+  const LogInScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
           
-        ),
-      )
-      ))
-    ;
-      
+          Container(
+            decoration: const BoxDecoration(
+              color: Color(0xFF4285F4),
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(30),
+                bottomRight: Radius.circular(30),
+              ),
+            ),
+            padding: const EdgeInsets.only(top: 50, left: 16, right: 16, bottom: 20),
+            child: Row(
+              children: [
+                IconButton(
+                  icon: const Icon(Icons.arrow_back, color: Colors.white),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+                const SizedBox(width: 10),
+                const Text(
+                  'Log In.',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+          ),
 
-}
+          
+          const SizedBox(height: 40),
+
+          Center(
+            child: Image.asset(
+              'images/projectenter.png',
+              width: 250,
+              fit: BoxFit.contain,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }
